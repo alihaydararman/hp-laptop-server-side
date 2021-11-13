@@ -23,7 +23,26 @@ async function run() {
         const servicestourism = database.collection("products");
         const ordertourism = database.collection("orders");
         const usersCollection = database.collection('users');
+        const commentCollection = database.collection('comments');
+        //post comment
 
+        app.post('/comments', async (req, res) => {
+            const servic = req.body;
+
+
+            console.log('hitting the post api', servic)
+
+            const result = await commentCollection.insertOne(servic);
+            console.log(result)
+            res.json(result)
+        });
+
+        //Get Api
+        app.get('/comments', async (req, res) => {
+            const cursor = commentCollection.find({});
+            const service = await cursor.toArray();
+            res.send(service);
+        })
 
         app.get('/users/:email', async (req, res) => {
             const email = req.params.email;
