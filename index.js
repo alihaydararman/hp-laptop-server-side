@@ -160,6 +160,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log('running tourism server', port)
+    console.log('running hpteck server', port)
 })
 
